@@ -38,7 +38,12 @@ def tampilkan_film():
 # Menambahkan Film
 def tambah_film():
     print("\n== TAMBAH FILM ==")
-    nomor_id = input_angka("Masukkan ID: ")
+    while True:
+        nomor_id= input_angka("Masukkan ID: ")
+        if nomor_id in id_film:
+            print(f"ID {nomor_id} sudah digunakan, masukkan ID lain!")
+        else:
+            break
     judul = input("Masukkan judul film: ")
     genre = input("Masukkan genre film: ")
     harga = input_angka("Masukkan harga tiket: ")
