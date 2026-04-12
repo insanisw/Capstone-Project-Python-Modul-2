@@ -59,15 +59,16 @@ def hapus_film():
         print(f"{i+1}. {judul_film[i]}")
     hapus= input_angka("Masukkan nomor ID film yang ingin dihapus: ")
 
-    if 1 <= hapus <= len(judul_film):
-        del id_film[hapus - 1]
-        del judul_film[hapus - 1]
-        del genre_film[hapus - 1]
-        del harga_tiket[hapus - 1]
-        del jumlah_kursi_tersedia[hapus - 1]
+    if hapus in id_film:
+        idx = id_film.index(hapus)  # cari index berdasarkan ID, bukan nomor urut
+        del id_film[idx]
+        del judul_film[idx]
+        del genre_film[idx]
+        del harga_tiket[idx]
+        del jumlah_kursi_tersedia[idx]
         print("Film berhasil dihapus!")
     else:
-        print("Nomor Tidak Valid")
+        print("ID tidak ditemukan!")
 
 # Mengubah Data Film
 def update_film():
@@ -125,7 +126,7 @@ def update_film():
         for i in range(len(id_film)):
             print(f"{i+1:<4} {id_film[i]:<4} {judul_film[i]:<20} {genre_film[i]:<10} Rp{harga_tiket[i]:<8} {jumlah_kursi_tersedia[i]:<6}")
 
-            print("="*80)
+        print("="*80)
 
     else:print("Nomor film tidak valid")
 
@@ -155,19 +156,19 @@ def beli_tiket():
             print("Harap masukkan angka untuk nomor film!")
             continue
     
-
-        if 1 <= beli <= len(id_film):
+        if beli in id_film:
+            idx = id_film.index(beli)  # cari index yang benar berdasarkan ID
             jumlah = input_angka("Jumlah Tiket: ")
 
-            if jumlah <= jumlah_kursi_tersedia[beli - 1]:
-                cart_id.append(beli - 1)
+            if jumlah <= jumlah_kursi_tersedia[idx]:
+                cart_id.append(idx)
                 cart_jumlah.append(jumlah)
-                total_harga += jumlah * harga_tiket[beli - 1]
+                total_harga += jumlah * harga_tiket[idx]
                 print("Tiket berhasil ditambahkan ke keranjang!")
             else:
                 print("Kursi tidak cukup")
         else:
-            print("Nomor tidak valid!")
+            print("ID tidak valid!")
     
     # ========== STRUK ==========
     print("\n" + "="*50)
