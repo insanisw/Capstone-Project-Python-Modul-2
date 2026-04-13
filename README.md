@@ -1,1 +1,1 @@
-# Capstone-Proejct-Python-Modul-2
+# Capstone-Project-Python-Modul-2
